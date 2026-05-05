@@ -1,0 +1,18 @@
+# environment
+.env
+.venv/
+venv/
+
+# python cache
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+
+# logs & checkpoints
+logs/
+checkpoints/
+
+# zip files
+*.zip

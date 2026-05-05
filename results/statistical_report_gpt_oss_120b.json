@@ -1,0 +1,313 @@
+{
+    "primary_hypothesis": {
+        "0": {
+            "accuracy": 0.7777777777777778,
+            "balanced_accuracy": 0.5,
+            "mcc": 0.0,
+            "confusion_matrix": [
+                [
+                    119,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ]
+            ],
+            "correct": 119,
+            "total": 153,
+            "z_statistic": 8.264597475290095,
+            "p_value": 7.008344589037779e-17,
+            "significant": true,
+            "ci_95": [
+                0.6985494735992424,
+                0.8570060819563132
+            ]
+        },
+        "1": {
+            "accuracy": 0.9281045751633987,
+            "balanced_accuracy": 0.9327731092436975,
+            "mcc": 0.8124605132649425,
+            "confusion_matrix": [
+                [
+                    110,
+                    9
+                ],
+                [
+                    2,
+                    32
+                ]
+            ],
+            "correct": 142,
+            "total": 153,
+            "z_statistic": 20.499652568805686,
+            "p_value": 1.0841798825946206e-93,
+            "significant": true,
+            "ci_95": [
+                0.8488762709848633,
+                1.0
+            ]
+        },
+        "3": {
+            "accuracy": 0.9019607843137255,
+            "balanced_accuracy": 0.9054621848739496,
+            "mcc": 0.7500025168587588,
+            "confusion_matrix": [
+                [
+                    107,
+                    12
+                ],
+                [
+                    3,
+                    31
+                ]
+            ],
+            "correct": 138,
+            "total": 153,
+            "z_statistic": 16.719976336575726,
+            "p_value": 4.687822285680009e-63,
+            "significant": true,
+            "ci_95": [
+                0.8227324801351901,
+                0.9811890884922609
+            ]
+        },
+        "5": {
+            "accuracy": 0.9281045751633987,
+            "balanced_accuracy": 0.9012605042016806,
+            "mcc": 0.7943178525732868,
+            "confusion_matrix": [
+                [
+                    113,
+                    6
+                ],
+                [
+                    5,
+                    29
+                ]
+            ],
+            "correct": 142,
+            "total": 153,
+            "z_statistic": 20.499652568805686,
+            "p_value": 1.0841798825946206e-93,
+            "significant": true,
+            "ci_95": [
+                0.8488762709848633,
+                1.0
+            ]
+        },
+        "hypothesis_result": {
+            "one_shot_accuracy": 0.9281045751633987,
+            "target_range": [
+                0.6,
+                0.7
+            ],
+            "in_target_range": false,
+            "hypothesis_supported": false
+        }
+    },
+    "sub_hypothesis_1a": {
+        "1": {
+            "high_ctr_accuracy": 0.9382716049382716,
+            "low_ctr_accuracy": 0.9166666666666666,
+            "difference": 0.021604938271604923,
+            "z_statistic": 0.5163771165577355,
+            "p_value": 0.30279552253904796,
+            "significant": false,
+            "n_high": 81,
+            "n_low": 72
+        },
+        "3": {
+            "high_ctr_accuracy": 0.9012345679012346,
+            "low_ctr_accuracy": 0.9027777777777778,
+            "difference": -0.0015432098765432167,
+            "z_statistic": -0.032040131839759775,
+            "p_value": 0.51277997663291,
+            "significant": false,
+            "n_high": 81,
+            "n_low": 72
+        }
+    },
+    "sub_hypothesis_1c": {
+        "1": {
+            "ctr_accuracy": 0.7320261437908496,
+            "conversion_accuracy": 0.9411764705882353,
+            "difference": -0.20915032679738566,
+            "n_samples": 153
+        },
+        "3": {
+            "ctr_accuracy": 0.7189542483660131,
+            "conversion_accuracy": 0.9411764705882353,
+            "difference": -0.2222222222222222,
+            "n_samples": 153
+        }
+    },
+    "metric_differences": {
+        "CTR": {
+            "test_type": "Mann-Whitney U test",
+            "statistic": 70983.5,
+            "p_value": 7.816950930617374e-18,
+            "significant": true,
+            "cohens_d": 0.7579159251035372,
+            "success_mean": 0.022719792197533794,
+            "fail_mean": 0.013398605146776432,
+            "success_n": 167,
+            "fail_n": 594
+        },
+        "CPC": {
+            "test_type": "Mann-Whitney U test",
+            "statistic": 22954.0,
+            "p_value": 2.7241473555213693e-08,
+            "significant": true,
+            "cohens_d": -0.4523940564706258,
+            "success_mean": 1.4175189880718038,
+            "fail_mean": 1.540608437211238,
+            "success_n": 167,
+            "fail_n": 391
+        },
+        "Conversion_Rate": {
+            "test_type": "Mann-Whitney U test",
+            "statistic": 96297.5,
+            "p_value": 2.398028321740851e-102,
+            "significant": true,
+            "cohens_d": 1.483682477257906,
+            "success_mean": 44.08501966046154,
+            "fail_mean": 1.9989131694482298,
+            "success_n": 167,
+            "fail_n": 594
+        },
+        "impressions": {
+            "test_type": "Mann-Whitney U test",
+            "statistic": 56972.5,
+            "p_value": 0.003306675791513166,
+            "significant": true,
+            "cohens_d": -0.1884015735823319,
+            "success_mean": 71631.7245508982,
+            "fail_mean": 112038.87205387205,
+            "success_n": 167,
+            "fail_n": 594
+        },
+        "clicks": {
+            "test_type": "Mann-Whitney U test",
+            "statistic": 59308.0,
+            "p_value": 9.074683198620178e-05,
+            "significant": true,
+            "cohens_d": -0.1755037492574441,
+            "success_mean": 11.401197604790418,
+            "fail_mean": 16.447811447811446,
+            "success_n": 167,
+            "fail_n": 594
+        },
+        "spent": {
+            "test_type": "Mann-Whitney U test",
+            "statistic": 58986.5,
+            "p_value": 0.00015926599810822857,
+            "significant": true,
+            "cohens_d": -0.2014390120117136,
+            "success_mean": 17.88203596535928,
+            "fail_mean": 28.003265978223904,
+            "success_n": 167,
+            "fail_n": 594
+        }
+    },
+    "demographic_effects": {
+        "gender_test": {
+            "male_success_rate": 0.21193415637860083,
+            "female_success_rate": 0.23272727272727273,
+            "difference": -0.020793116348671897,
+            "z_statistic": -0.6658017549454679,
+            "p_value": 0.505537823017591,
+            "significant": false,
+            "male_n": 486,
+            "female_n": 275
+        }
+    },
+    "power_analysis": {
+        "target_power": 0.8,
+        "alpha": 0.05,
+        "effect_size_assumed": 0.3,
+        "required_sample_size_per_group": 176,
+        "total_required_samples": 351
+    },
+    "descriptive_statistics": {
+        "total_campaigns": 761,
+        "success_rate": 0.21944809461235218,
+        "success_count": 167,
+        "fail_count": 594,
+        "gender_distribution": {
+            "M": 486,
+            "F": 275
+        },
+        "age_distribution": {
+            "30-34": 327,
+            "35-39": 180,
+            "40-44": 139,
+            "45-49": 115
+        }
+    },
+    "correlations": {
+        "CTR": {
+            "CTR": 1.0,
+            "CPC": -0.3973685781285307,
+            "Conversion_Rate": 0.06836714166817894,
+            "impressions": -0.27629298934601615,
+            "clicks": -0.2245528948434253,
+            "spent": -0.23520379738664873,
+            "is_success": 0.09755082948741982
+        },
+        "CPC": {
+            "CTR": -0.3973685781285307,
+            "CPC": 1.0,
+            "Conversion_Rate": -0.15188984691847177,
+            "impressions": 0.3700319601612533,
+            "clicks": 0.35565928363736965,
+            "spent": 0.3721329009068809,
+            "is_success": -0.19835885045793294
+        },
+        "Conversion_Rate": {
+            "CTR": 0.06836714166817894,
+            "CPC": -0.15188984691847177,
+            "Conversion_Rate": 1.0,
+            "impressions": -0.17841859176717537,
+            "clicks": -0.20981479627755845,
+            "spent": -0.2011189688580534,
+            "is_success": 0.6297968298986238
+        },
+        "impressions": {
+            "CTR": -0.27629298934601615,
+            "CPC": 0.3700319601612533,
+            "Conversion_Rate": -0.17841859176717537,
+            "impressions": 1.0,
+            "clicks": 0.9690213744821915,
+            "spent": 0.9789155107705367,
+            "is_success": -0.16017341382051284
+        },
+        "clicks": {
+            "CTR": -0.2245528948434253,
+            "CPC": 0.35565928363736965,
+            "Conversion_Rate": -0.20981479627755845,
+            "impressions": 0.9690213744821915,
+            "clicks": 1.0,
+            "spent": 0.99723386210595,
+            "is_success": -0.16989706992460518
+        },
+        "spent": {
+            "CTR": -0.23520379738664873,
+            "CPC": 0.3721329009068809,
+            "Conversion_Rate": -0.2011189688580534,
+            "impressions": 0.9789155107705367,
+            "clicks": 0.99723386210595,
+            "spent": 1.0,
+            "is_success": -0.1744087386762532
+        },
+        "is_success": {
+            "CTR": 0.09755082948741982,
+            "CPC": -0.19835885045793294,
+            "Conversion_Rate": 0.6297968298986238,
+            "impressions": -0.16017341382051284,
+            "clicks": -0.16989706992460518,
+            "spent": -0.1744087386762532,
+            "is_success": 1.0
+        }
+    }
+}
