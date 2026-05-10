@@ -1,0 +1,13 @@
+{
+    "model_type": "gpt",
+    "model_name": "qwen3.5",
+    "total_api_calls": 612,
+    "failed_calls": 0,
+    "success_rate": 100.0,
+    "total_prompt_tokens": 255393,
+    "total_completion_tokens": 929172,
+    "total_tokens": 1184565,
+    "total_cost_usd": 0.0,
+    "avg_cost_per_call": 0.0,
+    "avg_tokens_per_call": 1935.563725490196
+}
