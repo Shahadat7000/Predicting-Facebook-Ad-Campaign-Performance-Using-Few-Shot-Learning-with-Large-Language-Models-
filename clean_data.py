@@ -1,9 +1,17 @@
+"""
+Data Cleaning Script for Facebook Ad Campaign Dataset
+Author: Thesis Researcher
+Date: 2024
+"""
 
 import pandas as pd
 import numpy as np
 from pathlib import Path
+from utils import safe_numeric
 
+# =========================
 # CONFIGURATION
+# =========================
 INPUT_FILE = "data/data.csv"
 OUTPUT_CLEAN_FILE = "data/data_clean.csv"
 OUTPUT_BAD_FILE = "data/bad_rows_report.csv"
@@ -18,16 +26,9 @@ VALID_AGES = {"30-34", "35-39", "40-44", "45-49"}
 VALID_GENDERS = {"M", "F"}
 
 
-
+# =========================
 # HELPER FUNCTIONS
-def safe_numeric(df, cols):
-    """Safely convert columns to numeric"""
-    for col in cols:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors="coerce")
-    return df
-
-
+# =========================
 def load_data(path: str) -> pd.DataFrame:
     """Load and validate raw data"""
     print("=" * 60)
@@ -142,9 +143,9 @@ def validate_clean_data(df: pd.DataFrame):
             print(f"  Missing: {df[col].isna().sum()}")
 
 
-
+# =========================
 # MAIN EXECUTION
-
+# =========================
 def main():
     print("\n" + "=" * 60)
     print("FACEBOOK AD DATASET CLEANING")
