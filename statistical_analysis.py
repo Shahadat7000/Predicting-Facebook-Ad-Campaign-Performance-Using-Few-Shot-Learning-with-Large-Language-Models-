@@ -1,8 +1,4 @@
-"""
-Statistical Analysis Module for Hypothesis Testing
-Author: Thesis Researcher
-Date: 2024
-"""
+
 
 import pandas as pd
 import numpy as np
@@ -19,9 +15,9 @@ import seaborn as sns
 
 logger = logging.getLogger(__name__)
 
-# ============================================
+
 # HELPER FUNCTION: Convert string booleans to int
-# ============================================
+
 def _convert_to_int(df, col_name):
     """
     Convert string boolean column to integer
