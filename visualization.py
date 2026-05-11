@@ -1,10 +1,4 @@
-"""
-Visualization Module for Thesis Results
-Author: Thesis Researcher
-Date: 2024
 
-Generates per‑model visualizations and an overall model‑comparison heatmap.
-"""
 
 import pandas as pd
 import numpy as np
@@ -21,9 +15,9 @@ import json
 
 logger = logging.getLogger(__name__)
 
-# ============================================
+
 # HELPER FUNCTION: Convert string booleans to int
-# ============================================
+
 def _convert_to_int(df, col_name):
     """
     Convert string boolean column to integer
@@ -108,10 +102,8 @@ class ThesisVisualizer:
             'many_shot': '#1abc9c',
             'baseline': '#95a5a6'
         }
-
-    # ------------------------------------------------------------------
     # Existing plotting methods (with model_name prefix added to titles)
-    # ------------------------------------------------------------------
+    
 
     def plot_success_distribution(self, save: bool = True):
         """Plot distribution of successful vs unsuccessful campaigns"""
@@ -699,9 +691,9 @@ class ThesisVisualizer:
 
         logger.info(f"All visualizations saved to {self.output_dir}")
 
-    # ------------------------------------------------------------------
+
     # EXISTING STATIC METHOD: Overall model comparison
-    # ------------------------------------------------------------------
+  
     @staticmethod
     def generate_model_comparison(results_dir="results", output_dir="visualizations"):
         """
@@ -754,9 +746,9 @@ class ThesisVisualizer:
         plt.close()
         logger.info(f"Model comparison saved to {output_dir}")
 
-    # ------------------------------------------------------------------
+
     # NEW STATIC METHOD: Combined accuracy by shot (all models side-by-side)
-    # ------------------------------------------------------------------
+    
     @staticmethod
     def generate_combined_accuracy_by_shot(results_dir="results", output_path="visualizations/combined_accuracy_by_shot.png"):
         """Grouped bar chart: Accuracy by shot level for all models."""
@@ -801,9 +793,9 @@ class ThesisVisualizer:
         plt.close()
         logger.info(f"Combined accuracy-by-shot saved to {output_path}")
 
-    # ------------------------------------------------------------------
+
     # NEW STATIC METHOD: Combined model comparison (1-shot + baselines)
-    # ------------------------------------------------------------------
+    
     @staticmethod
     def generate_combined_model_comparison(results_dir="results", baseline_path="results/baseline_results.json",
                                            output_path="visualizations/combined_model_comparison.png"):
