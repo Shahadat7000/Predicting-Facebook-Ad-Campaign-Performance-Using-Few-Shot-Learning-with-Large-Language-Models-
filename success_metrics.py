@@ -1,7 +1,4 @@
-"""
-Success Metrics Summary Module
-Generates comprehensive summary of success metrics distribution
-"""
+
 
 import pandas as pd
 import numpy as np
