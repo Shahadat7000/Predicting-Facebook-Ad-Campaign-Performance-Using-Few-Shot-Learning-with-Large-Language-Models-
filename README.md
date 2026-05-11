@@ -73,3 +73,49 @@ statistical_analysis.py
 success_metrics.py
 train_test_split.py
 visualization.py
+
+## How to Run
+Install dependencies
+pip install -r requirements.txt
+
+## Run experiments
+python run_experiment.py
+
+## Key Findings
+GPT OSS 120B achieved the best performance
+Few-shot learning significantly outperformed traditional ML methods
+Chain-of-thought prompting improved reasoning quality
+LLMs handled class imbalance better than classical approaches
+
+
+## Evaluation Metrics
+Accuracy
+Balanced Accuracy
+Precision
+Recall
+F1 Score
+MCC (Matthews Correlation Coefficient)
+
+## Limitations
+Dataset is limited to Facebook advertising campaigns
+Dataset originates from 2017
+No multimodal data (images/videos) included
+
+
+## Future Work
+Integrate multimodal ad data
+Evaluate newer LLMs
+Explore hybrid ML + LLM systems
+Real-time adaptive prediction systems
+
+
+## Author
+
+Shahadat Hussain
+Master’s Thesis
+Faculty of Informatics
+Brno, 2026
+
+## Keywords
+
+Few-shot Learning, Large Language Models, Facebook Ads, Campaign Prediction, Prompt Engineering, Tabular Data
