@@ -1,15 +1,4 @@
-#!/usr/bin/env python3
-"""
-Master Experiment Runner for Facebook Ad Prediction Thesis
-Run this script to execute the complete experiment pipeline.
 
-Final pipeline:
-1. Data preprocessing
-2. Train-test split
-3. Multi-model LLM experiments using MultiModelExperiment
-4. Statistical analysis
-5. Visualization generation
-"""
 
 import os
 import sys
@@ -18,9 +7,9 @@ import time
 import logging
 from pathlib import Path
 
-# ------------------------------------------------------------
-# IMPORTANT: create logs folder before FileHandler is created
-# ------------------------------------------------------------
+
+#create logs folder before FileHandler is created
+
 Path("logs").mkdir(exist_ok=True)
 
 # Add src to path if you keep modules inside src/
