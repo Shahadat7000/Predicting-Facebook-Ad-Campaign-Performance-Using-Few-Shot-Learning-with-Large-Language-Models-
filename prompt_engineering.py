@@ -1,4 +1,8 @@
-
+"""
+Prompt Engineering Module for Few-Shot Learning
+Author: Thesis Researcher
+Date: 2024
+"""
 import warnings
 warnings.filterwarnings("ignore", message="X does not have valid feature names")
 import pandas as pd
@@ -7,6 +11,7 @@ from typing import Dict, List, Tuple, Optional
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics.pairwise import cosine_similarity
 import logging
+from utils import safe_to_int
 
 logger = logging.getLogger(__name__)
 
@@ -124,10 +129,19 @@ Your answer (0 or 1):"""
             if idx >= len(self.train_df):
                 continue
 
-            # Cast to bool explicitly in case stored as string 'True'/'False'
-            is_success = bool(self.train_df.iloc[idx]['is_success'])
-            if hasattr(is_success, '__class__') and isinstance(self.train_df.iloc[idx]['is_success'], str):
-                is_success = self.train_df.iloc[idx]['is_success'].strip().lower() in ('true', '1', 'yes')
+            # ===== IMPROVED: Safe boolean extraction ====="
+            try:
+                is_success_val = self.train_df.iloc[idx].get('is_success')
+                
+                if is_success_val is None or pd.isna(is_success_val):
+                    continue
+                
+                # Use utility function for safe conversion
+                is_success = bool(safe_to_int(is_success_val))
+                
+            except Exception as e:
+                logger.warning(f"Error extracting is_success at idx {idx}: {e}")
+                continue
 
             if is_success and success_count < success_needed:
                 selected_indices.append(idx)

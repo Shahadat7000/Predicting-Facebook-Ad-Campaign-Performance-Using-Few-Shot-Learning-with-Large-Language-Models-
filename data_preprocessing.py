@@ -1,3 +1,8 @@
+"""
+Data Preprocessing Module for Facebook Ad Campaign Analysis
+Author: Thesis Researcher
+Date: 2024
+"""
 
 import pandas as pd
 import numpy as np
@@ -6,6 +11,7 @@ from pathlib import Path
 from typing import Tuple, Dict
 import json
 from sklearn.model_selection import train_test_split
+from utils import safe_numeric, convert_column_to_int
 
 # Configure logging
 logging.basicConfig(
@@ -300,7 +306,7 @@ def main():
     """Main execution"""
     logger.info("Starting data preprocessing with NO LEAKAGE...")
 
-    # ===== IMPORTANT: Use clean data =====
+    # ===== IMPORTANT: Use clean data ====="
     preprocessor = FacebookAdDataPreprocessor("data/data_clean.csv")
 
     # Load data
