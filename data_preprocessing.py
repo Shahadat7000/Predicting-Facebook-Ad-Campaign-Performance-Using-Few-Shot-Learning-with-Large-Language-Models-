@@ -1,8 +1,3 @@
-"""
-Data Preprocessing Module for Facebook Ad Campaign Analysis
-Author: Thesis Researcher
-Date: 2024
-"""
 
 import pandas as pd
 import numpy as np
