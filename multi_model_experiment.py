@@ -1,14 +1,8 @@
-"""
-Multi-Model Experiment Module for Few-Shot Learning
-Final thesis-ready version.
 
-This module evaluates multiple OpenAI-compatible LLM endpoints on
-Facebook ad campaign success prediction using zero-shot and few-shot prompts.
-"""
 
-# ============================================
+
 # Windows Encoding Fix - MUST BE NEAR TOP
-# ============================================
+
 import sys
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -16,9 +10,8 @@ if hasattr(sys.stdout, "reconfigure"):
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8")
 
-# ============================================
 # Imports
-# ============================================
+
 import json
 import logging
 import os
@@ -51,9 +44,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
-# ============================================
 # Setup
-# ============================================
+
 load_dotenv()
 Path("logs").mkdir(exist_ok=True)
 Path("results").mkdir(exist_ok=True)
