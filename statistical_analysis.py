@@ -1,8 +1,4 @@
-"""
-Statistical Analysis Module for Hypothesis Testing
-Author: Thesis Researcher
-Date: 2024
-"""
+
 
 import pandas as pd
 import numpy as np
