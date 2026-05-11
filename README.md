@@ -83,21 +83,49 @@ visualization.py
 
 
 
-##  How to Run
+##  How to Run (PowerShell)
 
-### Install Dependencies
+# 1  Install Dependencies
 
-```bash
+```powershell
 pip install -r requirements.txt
 ```
 
-### Run Experiments
 
-```bash
+# 2 Clean the Raw Dataset
+
+```powershell
+python clean_data.py
+```
+
+This step removes corrupted rows and creates the cleaned dataset:
+
+```text
+data/data_clean.csv
+data/bad_rows_report.csv
+```
+
+---
+
+# 3 Run the Full Experiment Pipeline
+
+```powershell
 python run_experiment.py
 ```
 
+This is the master runner script. It automatically executes:
 
+- Data preprocessing
+- Train-test split
+- Multi-model LLM experiments using `multi_model_experiment.py`
+- Statistical analysis
+- Visualization generation
+
+The models evaluated are:
+
+- DeepSeek v3.2
+- GPT OSS 120B
+- Qwen3.5
 
 ##  Key Findings
 - GPT OSS 120B achieved the best performance
