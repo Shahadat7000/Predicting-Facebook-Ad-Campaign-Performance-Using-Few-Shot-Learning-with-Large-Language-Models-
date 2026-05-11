@@ -1,8 +1,3 @@
-"""
-Utility functions for data cleaning and conversion
-Author: Thesis Researcher
-Date: 2026
-"""
 
 import pandas as pd
 import numpy as np
