@@ -1,8 +1,4 @@
-"""
-Prompt Engineering Module for Few-Shot Learning
-Author: Thesis Researcher
-Date: 2024
-"""
+
 import warnings
 warnings.filterwarnings("ignore", message="X does not have valid feature names")
 import pandas as pd
