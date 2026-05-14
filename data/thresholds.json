@@ -1,0 +1,6 @@
+{
+    "ctr_threshold": 0.9,
+    "cpc_threshold": 1.72,
+    "conversion_threshold": 3.0,
+    "method": "absolute"
+}
