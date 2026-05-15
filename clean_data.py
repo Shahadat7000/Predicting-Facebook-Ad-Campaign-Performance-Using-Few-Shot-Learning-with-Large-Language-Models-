@@ -1,0 +1,213 @@
+import pandas as pd
+import numpy as np
+from pathlib import Path
+from utils import safe_numeric
+
+
+INPUT_FILE = "data/data.csv"
+OUTPUT_CLEAN_FILE = "data/data_clean.csv"
+OUTPUT_BAD_FILE = "data/bad_rows_report.csv"
+
+EXPECTED_COLUMNS = [
+    "ad_id", "reporting_start", "reporting_end", "campaign_id", "fb_campaign_id",
+    "age", "gender", "interest1", "interest2", "interest3",
+    "impressions", "clicks", "spent", "total_conversion", "approved_conversion"
+]
+
+VALID_AGES = {"30-34", "35-39", "40-44", "45-49"}
+VALID_GENDERS = {"M", "F"}
+
+
+def load_data(path: str) -> pd.DataFrame:
+    print("=" * 60)
+    print("LOADING RAW DATA")
+    print("=" * 60)
+
+    df = pd.read_csv(path)
+    print(f"Shape: {df.shape}")
+    print(f"Columns: {list(df.columns)}")
+
+    missing_cols = [c for c in EXPECTED_COLUMNS if c not in df.columns]
+    extra_cols = [c for c in df.columns if c not in EXPECTED_COLUMNS]
+
+    if missing_cols:
+        print(f"Missing columns: {missing_cols}")
+
+    if extra_cols:
+        print(f"Extra columns: {extra_cols}")
+
+    return df
+
+
+def normalize_types(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+
+    obj_cols = df.select_dtypes(include="object").columns
+    for col in obj_cols:
+        df[col] = df[col].astype(str).str.strip()
+
+    numeric_cols = [
+        "ad_id", "interest1", "interest2", "interest3",
+        "impressions", "clicks", "spent",
+        "total_conversion", "approved_conversion"
+    ]
+
+    df = safe_numeric(df, numeric_cols)
+
+    return df
+
+
+def find_corrupted_rows(df: pd.DataFrame) -> pd.DataFrame:
+    required_cols = ["age", "gender", "campaign_id", "fb_campaign_id"]
+
+    missing = [c for c in required_cols if c not in df.columns]
+    if missing:
+        print(f"Cannot check corrupted rows. Missing columns: {missing}")
+        return pd.DataFrame()
+
+    age_ok = df["age"].astype(str).isin(VALID_AGES)
+    gender_ok = df["gender"].astype(str).isin(VALID_GENDERS)
+
+    campaign_bad = df["campaign_id"].astype(str).isin(VALID_AGES | VALID_GENDERS)
+    fb_campaign_bad = df["fb_campaign_id"].astype(str).isin(VALID_AGES | VALID_GENDERS)
+
+    corrupted = df[
+        (~age_ok) | (~gender_ok) | campaign_bad | fb_campaign_bad
+    ].copy()
+
+    if not corrupted.empty:
+        corrupted["issue_age"] = ~age_ok.loc[corrupted.index]
+        corrupted["issue_gender"] = ~gender_ok.loc[corrupted.index]
+        corrupted["issue_campaign_shift"] = campaign_bad.loc[corrupted.index]
+        corrupted["issue_fb_shift"] = fb_campaign_bad.loc[corrupted.index]
+
+    return corrupted
+
+
+def calculate_metrics(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+
+    required_numeric = [
+        "impressions", "clicks", "spent",
+        "total_conversion", "approved_conversion"
+    ]
+
+    df = safe_numeric(df, required_numeric)
+
+    df["impressions"] = df["impressions"].fillna(0)
+    df["clicks"] = df["clicks"].fillna(0)
+    df["spent"] = df["spent"].fillna(0)
+    df["total_conversion"] = df["total_conversion"].fillna(0)
+    df["approved_conversion"] = df["approved_conversion"].fillna(0)
+
+    df["CTR"] = np.where(
+        df["impressions"] > 0,
+        (df["clicks"] / df["impressions"]) * 100,
+        0.0
+    )
+
+    df["CPC"] = np.where(
+        df["clicks"] > 0,
+        df["spent"] / df["clicks"],
+        np.nan
+    )
+
+    df["Conversion_Rate"] = np.where(
+        df["clicks"] > 0,
+        (df["approved_conversion"] / df["clicks"]) * 100,
+        0.0
+    )
+
+    return df
+
+
+def validate_clean_data(df: pd.DataFrame) -> None:
+    print("\n" + "=" * 60)
+    print("CLEAN DATA VALIDATION")
+    print("=" * 60)
+
+    if "age" in df.columns:
+        print("\nAge distribution:")
+        print(df["age"].value_counts().sort_index())
+
+    if "gender" in df.columns:
+        print("\nGender distribution:")
+        print(df["gender"].value_counts())
+
+    print("\nMissing values:")
+    print(df.isna().sum())
+
+    print("\nMetric summary:")
+    for col in ["CTR", "CPC", "Conversion_Rate"]:
+        if col in df.columns:
+            print(f"\n{col}:")
+            print(f"  Mean: {df[col].mean():.4f}")
+            print(f"  Median: {df[col].median():.4f}")
+            print(f"  Missing: {df[col].isna().sum()}")
+
+
+def main():
+    print("\n" + "=" * 60)
+    print("FACEBOOK AD DATASET CLEANING")
+    print("=" * 60)
+
+    Path("data").mkdir(exist_ok=True)
+
+    if not Path(INPUT_FILE).exists():
+        print(f"File not found: {INPUT_FILE}")
+        return None
+
+    df = load_data(INPUT_FILE)
+    df = normalize_types(df)
+
+    corrupted = find_corrupted_rows(df)
+
+    print("\n" + "=" * 60)
+    print("CORRUPTION ANALYSIS")
+    print("=" * 60)
+    print(f"Total rows: {len(df)}")
+    print(f"Corrupted rows: {len(corrupted)}")
+    print(f"Clean rows: {len(df) - len(corrupted)}")
+
+    if len(df) > 0:
+        print(f"Corruption rate: {(len(corrupted) / len(df)) * 100:.2f}%")
+
+    if not corrupted.empty:
+        print("\nSample corrupted rows (first 10):")
+
+        cols_to_show = [
+            "ad_id", "campaign_id", "fb_campaign_id", "age", "gender",
+            "issue_age", "issue_gender", "issue_campaign_shift", "issue_fb_shift"
+        ]
+
+        cols_to_show = [c for c in cols_to_show if c in corrupted.columns]
+
+        print(corrupted[cols_to_show].head(10).to_string(index=False))
+
+        corrupted.to_csv(OUTPUT_BAD_FILE, index=False)
+        print(f"\nCorrupted rows saved to: {OUTPUT_BAD_FILE}")
+
+    clean_df = df[
+        df["age"].astype(str).isin(VALID_AGES) &
+        df["gender"].astype(str).isin(VALID_GENDERS)
+    ].copy()
+
+    clean_df = calculate_metrics(clean_df)
+
+    validate_clean_data(clean_df)
+
+    clean_df.to_csv(OUTPUT_CLEAN_FILE, index=False)
+    print(f"\nClean dataset saved to: {OUTPUT_CLEAN_FILE}")
+
+    print("\n" + "=" * 60)
+    print("CLEANING COMPLETE")
+    print("=" * 60)
+    print(f"\nOriginal rows: {len(df)}")
+    print(f"Clean rows: {len(clean_df)}")
+    print(f"Removed rows: {len(df) - len(clean_df)}")
+
+    return clean_df
+
+
+if __name__ == "__main__":
+    clean_df = main()

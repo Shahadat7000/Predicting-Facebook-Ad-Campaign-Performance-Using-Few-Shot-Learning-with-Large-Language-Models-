@@ -1,0 +1,17 @@
+pandas
+numpy
+scikit-learn
+scipy
+statsmodels
+matplotlib
+seaborn
+plotly
+openai
+requests
+python-dotenv
+tenacity
+jupyter
+ipython
+tqdm
+pytest
+pytest-cov
