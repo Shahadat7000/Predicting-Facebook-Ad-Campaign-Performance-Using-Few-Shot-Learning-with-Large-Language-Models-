@@ -1,0 +1,20 @@
+{
+    "retrieval_baseline": {
+        "1": {
+            "accuracy": 0.9215686274509803,
+            "balanced_accuracy": 0.8760504201680672
+        },
+        "3": {
+            "accuracy": 0.9084967320261438,
+            "balanced_accuracy": 0.8571428571428571
+        },
+        "5": {
+            "accuracy": 0.9150326797385621,
+            "balanced_accuracy": 0.8508403361344539
+        }
+    },
+    "majority_class_baseline": {
+        "accuracy": 0.7777777777777778,
+        "balanced_accuracy": 0.5
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "test_size": 0.2,
+    "random_state": 42,
+    "stratify": true,
+    "train_size": 608,
+    "test_size_samples": 153,
+    "feature_columns": [
+        "ad_id",
+        "age",
+        "gender",
+        "interest1",
+        "interest2",
+        "interest3",
+        "impressions",
+        "clicks",
+        "spent",
+        "CTR",
+        "CPC",
+        "Conversion_Rate"
+    ],
+    "missing_feature_columns": [],
+    "train_success_rate": 21.875,
+    "test_success_rate": 22.22222222222222,
+    "full_success_rate": 21.944809461235216
+}
